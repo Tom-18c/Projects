@@ -1,9 +1,8 @@
 class Feature_OnlyStoreData_Str_Int:
     # 仅用作存储数据
-    def __init__(self, tom_feature_str: str, tom_which_location: int = 1, tom_find_next: int = 1) -> None:
+    def __init__(self, tom_feature_str: str, tom_which_location: int = 1) -> None:
         self.tom_feature_str = tom_feature_str
         self.tom_which_location = tom_which_location
-        self.tom_find_next = tom_find_next
 
 
 def tom_calculate_next_current(feature_str):
@@ -138,7 +137,6 @@ class Tom_Fun_Extract:
         return self.input_pending_str[: index_position[feature_location - 1]]
 
     def tom_after_slide(self, tom_item=0):
-
         # 截取特征
         feature = str(self.input_feature_instance.tom_feature_str)
         feature_location = self.input_feature_instance.tom_which_location
@@ -158,18 +156,18 @@ class Tom_Fun_Extract:
 
 
 # 用法举例
-any_str = "968888+888888888880>520≤2350≤2400≤2700<5555"
-feature_1 = Feature_OnlyStoreData_Str_Int("<", 1)
-feature_2 = Feature_OnlyStoreData_Str_Int("≤", 3)
-feature_3 = Feature_OnlyStoreData_Str_Int("888", 3)
-print("========================================================================================")
-print(f"以第{feature_3.tom_feature_str}为特征，使用切片法，截取第{feature_3.tom_which_location}个特征前的所有内容，否则结果为空：")
-print(Tom_Fun_Extract(any_str, feature_3).tom_before_slice())
-print(f"以第{feature_3.tom_feature_str}为特征，使用滑动法，截取第{feature_3.tom_which_location}个特征前的所有内容，否则结果为空：")
-print(Tom_Fun_Extract(any_str, feature_3).tom_before_slide())
-print("========================================================================================")
-print(f"以第{feature_3.tom_feature_str}为特征，使用切片法，截取第{feature_3.tom_which_location}个特征后的所有内容，否则结果为空：")
-print(Tom_Fun_Extract(any_str, feature_3).tom_after_slice())
-print(f"以第{feature_3.tom_feature_str}为特征，使用滑动法，截取第{feature_3.tom_which_location}个特征后的所有内容，否则结果为空：")
-print(Tom_Fun_Extract(any_str, feature_3).tom_after_slide())
-print("========================================================================================")
+# any_str = "968888+888888888880>520≤2350≤2400≤2700<5555"
+# feature_1 = Feature_OnlyStoreData_Str_Int("<", 1)
+# feature_2 = Feature_OnlyStoreData_Str_Int("≤", 3)
+# feature_3 = Feature_OnlyStoreData_Str_Int("888", 3)
+# print("========================================================================================")
+# print(f"以第{feature_3.tom_feature_str}为特征，使用切片法，截取第{feature_3.tom_which_location}个特征前的所有内容，否则结果为空：")
+# print(Tom_Fun_Extract(any_str, feature_3).tom_before_slice())
+# print(f"以第{feature_3.tom_feature_str}为特征，使用滑动法，截取第{feature_3.tom_which_location}个特征前的所有内容，否则结果为空：")
+# print(Tom_Fun_Extract(any_str, feature_3).tom_before_slide())
+# print("========================================================================================")
+# print(f"以第{feature_3.tom_feature_str}为特征，使用切片法，截取第{feature_3.tom_which_location}个特征后的所有内容，否则结果为空：")
+# print(Tom_Fun_Extract(any_str, feature_3).tom_after_slice())
+# print(f"以第{feature_3.tom_feature_str}为特征，使用滑动法，截取第{feature_3.tom_which_location}个特征后的所有内容，否则结果为空：")
+# print(Tom_Fun_Extract(any_str, feature_3).tom_after_slide())
+# print("========================================================================================")

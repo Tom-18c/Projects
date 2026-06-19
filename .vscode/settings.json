@@ -2,5 +2,9 @@
 "python-envs.defaultEnvManager": "ms-python.python:system",
 "editor.formatOnSave": true,
 "editor.defaultFormatter": "ms-python.black-formatter",
-
+"python.analysis.extraPaths": [
+"Feature Module/Mature Feature Module"
+],
+"editor.wordWrap": "off", // 可以是 "off", "on", "bounded", "wordWrapColumn", "advanced"
+"editor.wordWrapColumn": 200 // 如果选择了 "wordWrapColumn"，可以在这里指定换行列数
 }
