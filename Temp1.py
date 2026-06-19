@@ -1,3 +1,6 @@
+from typing import Union
+
+
 class Feature_OnlyStoreData_Str_Int:
     # 仅用作存储数据
     def __init__(self, tom_feature_str: str, tom_which_location: int = 1, tom_find_next: int = 1) -> None:
@@ -78,7 +81,7 @@ def tom_list_all_index(main_str, feature_str):
 
 
 class Tom_Fun_Extract:
-    def __init__(self, input_pending_str: str, input_feature_instance: Feature_OnlyStoreData_Str_Int):
+    def __init__(self, input_pending_str: str, input_feature_instance: Feature_OnlyStoreData_Str_Int, input_feature_instance2: Union[Feature_OnlyStoreData_Str_Int, None] = None):
         # 输入检查
         if not isinstance(input_pending_str, str):
             raise TypeError(f"input_pending_val must be str, not {type(input_pending_str).__name__}")
@@ -137,7 +140,7 @@ class Tom_Fun_Extract:
             return ""
         return self.input_pending_str[: index_position[feature_location - 1]]
 
-    def tom_after_slide(self, tom_item=0):
+    def tom_after_slide(self):
 
         # 截取特征
         feature = str(self.input_feature_instance.tom_feature_str)
@@ -155,6 +158,9 @@ class Tom_Fun_Extract:
         if not index_position or feature_location > len(index_position):
             return ""
         return self.input_pending_str[index_position[feature_location - 1] + len(feature) :]
+
+    def tom_between_slice(self):
+        pass
 
 
 # 用法举例

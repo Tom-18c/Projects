@@ -136,7 +136,7 @@ class Tom_Fun_Extract:
             return ""
         return self.input_pending_str[: index_position[feature_location - 1]]
 
-    def tom_after_slide(self, tom_item=0):
+    def tom_after_slide(self):
         # 截取特征
         feature = str(self.input_feature_instance.tom_feature_str)
         feature_location = self.input_feature_instance.tom_which_location
