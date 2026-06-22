@@ -63,7 +63,8 @@ def tom_get_credential(target_dir: str, credential_filename: str = "credential.j
                 try_count += 1
                 time.sleep(3)
         else:
-            print(f"第{try_count}次获取凭据有效")
+            # print(f"第{try_count}次获取凭据有效")
+            pass
 
     if try_count > 3:
         raise Exception("获取凭据失败，请检查网络连接或小程序id和密钥是否正确")
@@ -90,3 +91,37 @@ def tom_translate(text: str, credential: str, translate_type: str = "中译英")
     # print("翻译返回数据：", translate_return_data)
     translate_return_text = translate_return_data["to_content"]
     return translate_return_text
+
+
+if __name__ == "__main__":
+    print("\n以下为API调用模块(微信翻译)举例说明结果：", end="\n\n")
+
+    class Articles:
+        def __init__(self, title, content, author=""):
+            self.title = title
+            self.content = content
+            self.author = author
+
+    article1 = Articles("过故人庄", "故人具鸡黍，邀我至田家。绿树村边合，青山郭外斜。开轩面场圃，把酒话桑麻。待到重阳日，还来就菊花。", "孟浩然")
+    article2 = Articles("登鹳雀楼", "白日依山尽，黄河入海流。欲穷千里目，更上一层楼。", "王之涣")
+
+    # 文件夹路径
+    target_dir = r"G:\Apps\VSCode\Projects\Learn and Think\Call API\Data"
+    target_dir = os.path.join(os.path.dirname(__file__), "Learn and Think", "Call API", "Data")
+    # 获取翻译凭据
+    credential = tom_get_credential(target_dir, "credential_WeChatTranslate.json")
+
+    # 例
+    print(f"{article1.title} - {article1.author}", article1.content, sep="\n")
+    translate1 = tom_translate(article1.title, credential)
+    translate2 = tom_translate(article1.content, credential)
+    translate3 = tom_translate(article1.author, credential)
+    print(f"{translate1} - {translate3}", translate2, sep="\n")
+    print("=" * 128, end="\n\n")
+    # 例2
+    print(f"{article2.title} - {article2.author}", article2.content, sep="\n")
+    translate4 = tom_translate(article2.title, credential)
+    translate5 = tom_translate(article2.content, credential)
+    translate6 = tom_translate(article2.author, credential)
+    print(f"{translate4} - {translate6}", translate5, sep="\n")
+    print("=" * 256)

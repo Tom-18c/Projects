@@ -1,5 +1,6 @@
 import sys
 import os
+import json
 
 if __name__ == "__main__":
     # 测试模块添加，基于当前工作空间构建目标路径，并添加到系统路径中
@@ -9,8 +10,9 @@ if __name__ == "__main__":
 
     # 测试对象添加
     tom_test_fun_list = []
-    tom_test_fun_list.append("Tom_Fun_Extract")
-    tom_test_fun_list.append("WeChatTranslate_API")
+    # tom_test_fun_list.append("Tom_Fun_Extract")
+    # tom_test_fun_list.append("WeChatTranslate_API")
+    tom_test_fun_list.append("批量翻译古诗词")
 
     if "Tom_Fun_Extract" in tom_test_fun_list:
         # 导入功能模块
@@ -65,7 +67,8 @@ if __name__ == "__main__":
         article2 = Articles("登鹳雀楼", "白日依山尽，黄河入海流。欲穷千里目，更上一层楼。", "王之涣")
 
         # 文件夹路径
-        target_dir = r"G:\Apps\VSCode\Projects\Learn and Think\Call API\Data"
+        # target_dir = r"G:\Apps\VSCode\Projects\Learn and Think\Call API\Data"
+        target_dir = os.path.join(os.path.dirname(__file__), "Learn and Think", "Call API", "Data")
         # 获取翻译凭据
         credential = tom_get_credential(target_dir, "credential_WeChatTranslate.json")
 
@@ -83,3 +86,24 @@ if __name__ == "__main__":
         translate6 = tom_translate(article2.author, credential)
         print(f"{translate4} - {translate6}", translate5, sep="\n")
         print("=" * 256)
+
+    if "批量翻译古诗词" in tom_test_fun_list:
+        # 导入功能模块
+        from Tom_Functions_WeChatTranslate_API import tom_get_credential, tom_translate
+
+        # 路径
+        # target_dir = r"G:\Apps\VSCode\Projects\Learn and Think\Call API\Data"
+        target_dir = os.path.join(os.path.dirname(__file__), "Learn and Think", "Call API", "Data")
+        file_name = "at_zh.json"
+        # 获取翻译凭据
+        credential = tom_get_credential(target_dir, "credential_WeChatTranslate.json")
+
+        # 例
+        with open(os.path.join(target_dir, file_name), "r", encoding="utf-8") as f:
+            data = json.load(f)
+        for key, value in data.items():
+            print(key, value["content"], sep="\n")
+            translate1 = tom_translate(key, credential)
+            translate2 = tom_translate(value["content"], credential)
+            print(translate1, translate2, sep="\n")
+            print("=" * 128, end="\n\n")
