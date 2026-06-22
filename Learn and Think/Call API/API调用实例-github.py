@@ -26,9 +26,7 @@ headers = {"Accept": "application/vnd.github.v3+json"}
 # api调用步骤2-获取数据
 get_r1 = requests.get(call_api_url, headers=headers)
 # api调用步骤2-查看获取状态码（200表示成功、404表示失败）
-print(
-    f"响应状态码：{get_r1.status_code}，{"成功" if get_r1.status_code == 200 else "失败"}"
-)
+print(f"响应状态码：{get_r1.status_code}，{"成功" if get_r1.status_code == 200 else "失败"}")
 
 # api调用步骤3-处理数据-转化为dict
 get_r1_dict = get_r1.json()
